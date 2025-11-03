@@ -123,44 +123,43 @@ GÖREV: Aşağıdaki ERP sistem verilerini DETAYLIca analiz et ve JSON formatın
 ${contextData}
 
 ÖNEMLİ TALİMATLAR:
-1. ÖZET BÖLÜMÜNÜ MADDE MADDE YAZ (her madde ayrı satır, "-" ile başlasın)
-2. Her maddede SPESIFIK RAKAMLAR kullan (örn: "12 sipariş", "₺35,000 ödeme", "8 ürün")
-3. GENEL CÜMLELER KULLANMA! Spesifik müşteri/ürün adları, tutar, sayılar belirt
-4. Hangi müşteriden, hangi üründen, ne kadar olduğunu açıkça yaz
-5. Sorunları ve başarıları SOMUT ÖRNEKLERLE açıkla
+1. İLK ÖNCE PARAGRAF ÖZET: Genel durumu akıcı bir paragraf halinde özetle (3-5 cümle, spesifik rakamlarla)
+2. SONRA MADDE MADDE DETAYLAR: Her madde ayrı satır, "-" ile başlasın, SPESIFIK RAKAMLAR içersin
+3. Her maddede müşteri/ürün adları, tutar, sayılar belirt
+4. GENEL CÜMLELER KULLANMA! Somut örneklerle açıkla
 
 ÇIKTI FORMATI (TAM OLARAK BU FORMATTA):
 {
-  "summary": "- İlk bulgu (örn: 'Acme Corporation'dan 5 adet ORD-2024-001 siparişi bekliyor, toplam ₺436,600')\n- İkinci bulgu (örn: 'Tech Solutions Ltd firmasından ₺69,325'lik ödeme 15 gün gecikmiş')\n- Üçüncü bulgu (örn: 'Wireless Mouse stoğu kritik: 5/20')\n- Dördüncü bulgu (örn: 'Toplam 142 siparişten 12'si detayları eksik')\n- Beşinci bulgu (isteğe bağlı, spesifik rakam içermeli)",
+  "paragraphSummary": "Acme Corporation'dan toplam ₺2,183,000 tutarında 5 adet sipariş delivered durumunda olup ödemeler tamamlanmış. Tech Solutions Ltd'den ₺346,625'lik fatura processing aşamasında ve 5 gündür ödeme bekleniyor. Stok yönetimi açısından Wireless Mouse kritik seviyede (5/20), Monitor 27\\" 4K ise yeterli stokta (8/15). Toplam 142 sipariş içerisinde 35 günlük DSO ile nakit akışı normal seviyelerde.",
+  "bulletPoints": [
+    "- Acme Corporation'dan 5 adet ORD-2024-001 siparişi delivered durumunda, toplam ₺2,183,000",
+    "- Tech Solutions Ltd'den ₺346,625'lik INV-2024-002 faturası processing durumunda, 5 gün bekliyor",
+    "- Wireless Mouse stoğu kritik seviyede: 5/20",
+    "- Monitor 27\\" 4K ürünü yeterli stokta: 8/15",
+    "- Toplam 142 sipariş, ₺2,840,000 gelir, DSO: 35 gün"
+  ],
   "dataPoints": [
-    {"label": "Toplam Sipariş", "value": "sayı", "change": "+X% veya -X%"},
-    {"label": "Toplam Gelir", "value": "₺X", "change": "+X% veya -X%"},
-    {"label": "Bekleyen Ödemeler", "value": "₺X", "change": "+X% veya -X%"},
-    {"label": "DSO", "value": "X gün", "change": "-X gün veya +X gün"},
-    {"label": "Düşük Stok Uyarıları", "value": "sayı", "change": "+X veya -X"},
-    {"label": "Ödeme Başarı Oranı", "value": "%X", "change": "+X% veya -X%"}
+    {"label": "Toplam Sipariş", "value": "142", "change": "+0%"},
+    {"label": "Toplam Gelir", "value": "₺2,840,000", "change": "+0%"},
+    {"label": "Bekleyen Ödemeler", "value": "₺450,000", "change": "+0%"},
+    {"label": "DSO", "value": "35 gün", "change": "+0 gün"},
+    {"label": "Düşük Stok Uyarıları", "value": "6", "change": "+0"},
+    {"label": "Ödeme Başarı Oranı", "value": "%50", "change": "+0%"}
   ],
   "recommendedActions": [
-    "SPESIFIK aksiyon (müşteri/ürün adı + tutar/miktar içermeli, örn: 'TechStart firmasından ₺28,500'lik ödemeyi 3 gün içinde takip edin')",
-    "SPESIFIK aksiyon (örn: 'Wireless Mouse için acil 50 adet sipariş verin, stok 5/30 seviyesinde')",
-    "SPESIFIK aksiyon (örn: 'Acme Corp ile yüksek hacim nedeniyle (₺125,000) aylık toplantı planlayın')",
-    "SPESIFIK aksiyon (örn: 'ORD-0123 numaralı siparişin sevkiyatını hızlandırın, 7 gündür bekliyor')",
-    "SPESIFIK aksiyon (örn: 'INV-0456 faturası için %10 erken ödeme indirimi önerin, ₺35,000')"
+    "Tech Solutions Ltd'den ₺346,625'lik INV-2024-002 faturası için 3 gün içinde ödeme takibi yapın",
+    "Wireless Mouse için acil 50 adet sipariş verin, mevcut stok 5/20 kritik seviyede",
+    "Acme Corporation ile yüksek hacim nedeniyle (₺2,183,000) aylık toplantı planlayın",
+    "Monitor 27\\" 4K ürünü için 20 adet sipariş verin, stok 8/15 seviyesinde",
+    "Global Trading Co'dan bekleyen ORD-2025-8628 siparişini kontrol edin"
   ]
 }
 
 ÖNEMLİ UYARILAR:
-1. "summary" alanında SADECE maddeleri yaz, başlık YAZMA!
-2. "MADDE MADDE ÖZET" gibi açıklayıcı metinler YAZMA!
-3. Direkt "-" ile başla, örneği taklit et
-4. Her madde spesifik rakam içermeli
-
-ÖRNEKLER:
-✅ DOĞRU summary formatı:
-"- Acme Corp'dan 5 sipariş bekliyor (₺436,600)\n- Tech Solutions ₺69,325 ödeme gecikmiş\n- Wireless Mouse stoğu 5/20"
-
-❌ YANLIŞ - Başlık ekleme:
-"MADDE MADDE ÖZET:\n- Acme Corp'dan..."
+1. paragraphSummary: Akıcı paragraf, başlık yok, doğrudan özet
+2. bulletPoints: Her satır "-" ile başlar, başlık YOK
+3. Her veri spesifik olmalı (müşteri adı, ürün adı, tutar, miktar)
+4. Gerçek verilerden örnekle, uydurma!
 
 SADECE JSON DÖNDÜR, BAŞKA BİR ŞEY YAZMA!`
               }]
@@ -203,7 +202,8 @@ SADECE JSON DÖNDÜR, BAŞKA BİR ŞEY YAZMA!`
       // Create narrative with AI-generated content
       const narrative = {
         period,
-        summary: aiResponse.summary,
+        paragraphSummary: aiResponse.paragraphSummary,
+        summaryPoints: aiResponse.bulletPoints,
         dataPoints: aiResponse.dataPoints,
         recommendedActions: aiResponse.recommendedActions,
         createdAt: new Date(),
@@ -342,11 +342,19 @@ SADECE JSON DÖNDÜR, BAŞKA BİR ŞEY YAZMA!`
                       </div>
                     </div>
 
-                    {/* Summary - always visible */}
+                    {/* Paragraph Summary - always visible */}
+                    <div className="mb-4">
+                      <h4 className="text-sm font-semibold text-emerald-400 mb-2">📊 Genel Durum</h4>
+                      <div className="text-gray-300 leading-relaxed">
+                        {narrative.paragraphSummary}
+                      </div>
+                    </div>
+
+                    {/* Bullet Points - always visible */}
                     <div>
-                      <h4 className="text-sm font-semibold text-emerald-400 mb-2">📊 Özet</h4>
+                      <h4 className="text-sm font-semibold text-emerald-400 mb-2">🔍 Detaylı Bulgular</h4>
                       <div className="text-gray-300 leading-relaxed whitespace-pre-line">
-                        {narrative.summary}
+                        {narrative.summaryPoints?.join('\n')}
                       </div>
                     </div>
                   </div>

@@ -138,7 +138,8 @@ export interface KPI {
 export interface Narrative {
   id: string;
   month: string; // Format: "YYYY-MM"
-  summaryPoints: string[]; // Key insights
+  paragraphSummary: string; // Flowing paragraph overview
+  summaryPoints: string[]; // Bullet-point key insights
   recommendedActions: string[]; // Suggested next steps
   dataSource: {
     ordersAnalyzed: number;
