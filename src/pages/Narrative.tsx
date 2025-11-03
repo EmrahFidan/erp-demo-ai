@@ -131,7 +131,7 @@ ${contextData}
 
 ÇIKTI FORMATI (TAM OLARAK BU FORMATTA):
 {
-  "summary": "MADDE MADDE ÖZET (her satır '-' ile başlayan spesifik bulgu, MUTLAKA rakam içermeli):\n- İlk bulgu (örn: '15 siparişin 8'i beklemede, toplam ₺125,000'lik hacim')\n- İkinci bulgu (örn: 'Acme Corp firmasından ₺45,000'lik ödeme 15 gün gecikmiş')\n- Üçüncü bulgu (örn: 'Wireless Mouse stoğu kritik seviyede: 5/30')\n- Dördüncü bulgu (isteğe bağlı)\n- Beşinci bulgu (isteğe bağlı)",
+  "summary": "- İlk bulgu (örn: 'Acme Corporation'dan 5 adet ORD-2024-001 siparişi bekliyor, toplam ₺436,600')\n- İkinci bulgu (örn: 'Tech Solutions Ltd firmasından ₺69,325'lik ödeme 15 gün gecikmiş')\n- Üçüncü bulgu (örn: 'Wireless Mouse stoğu kritik: 5/20')\n- Dördüncü bulgu (örn: 'Toplam 142 siparişten 12'si detayları eksik')\n- Beşinci bulgu (isteğe bağlı, spesifik rakam içermeli)",
   "dataPoints": [
     {"label": "Toplam Sipariş", "value": "sayı", "change": "+X% veya -X%"},
     {"label": "Toplam Gelir", "value": "₺X", "change": "+X% veya -X%"},
@@ -149,12 +149,18 @@ ${contextData}
   ]
 }
 
-ÖRNEKLER:
-✅ İYİ: "- Acme Corp firmasından ₺45,000'lik ödeme 15 gün gecikmiş, DSO'yu artırıyor"
-❌ KÖTÜ: "- Bekleyen ödemelerin yüksekliği dikkat çekiyor"
+ÖNEMLİ UYARILAR:
+1. "summary" alanında SADECE maddeleri yaz, başlık YAZMA!
+2. "MADDE MADDE ÖZET" gibi açıklayıcı metinler YAZMA!
+3. Direkt "-" ile başla, örneği taklit et
+4. Her madde spesifik rakam içermeli
 
-✅ İYİ: "Wireless Mouse stoğu kritik: 5/30, 50 adet acil sipariş verin"
-❌ KÖTÜ: "Stok seviyelerini iyileştirin"
+ÖRNEKLER:
+✅ DOĞRU summary formatı:
+"- Acme Corp'dan 5 sipariş bekliyor (₺436,600)\n- Tech Solutions ₺69,325 ödeme gecikmiş\n- Wireless Mouse stoğu 5/20"
+
+❌ YANLIŞ - Başlık ekleme:
+"MADDE MADDE ÖZET:\n- Acme Corp'dan..."
 
 SADECE JSON DÖNDÜR, BAŞKA BİR ŞEY YAZMA!`
               }]
