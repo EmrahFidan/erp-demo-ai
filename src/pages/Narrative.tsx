@@ -118,13 +118,20 @@ ${payments.map(p => `- ${p.invoiceNumber}: ₺${p.amount}, Yöntem: ${p.paymentM
               parts: [{
                 text: `Sen profesyonel bir ERP sistem analistisin. Türkçe analiz yapıyorsun.
 
-GÖREV: Aşağıdaki ERP sistem verilerini analiz et ve JSON formatında bir rapor oluştur.
+GÖREV: Aşağıdaki ERP sistem verilerini DETAYLIca analiz et ve JSON formatında bir rapor oluştur.
 
 ${contextData}
 
+ÖNEMLİ TALİMATLAR:
+1. ÖZET BÖLÜMÜNÜ MADDE MADDE YAZ (her madde ayrı satır, "-" ile başlasın)
+2. Her maddede SPESIFIK RAKAMLAR kullan (örn: "12 sipariş", "₺35,000 ödeme", "8 ürün")
+3. GENEL CÜMLELER KULLANMA! Spesifik müşteri/ürün adları, tutar, sayılar belirt
+4. Hangi müşteriden, hangi üründen, ne kadar olduğunu açıkça yaz
+5. Sorunları ve başarıları SOMUT ÖRNEKLERLE açıkla
+
 ÇIKTI FORMATI (TAM OLARAK BU FORMATTA):
 {
-  "summary": "2-3 cümlelik özet analiz (Türkçe)",
+  "summary": "MADDE MADDE ÖZET (her satır '-' ile başlayan spesifik bulgu, MUTLAKA rakam içermeli):\n- İlk bulgu (örn: '15 siparişin 8'i beklemede, toplam ₺125,000'lik hacim')\n- İkinci bulgu (örn: 'Acme Corp firmasından ₺45,000'lik ödeme 15 gün gecikmiş')\n- Üçüncü bulgu (örn: 'Wireless Mouse stoğu kritik seviyede: 5/30')\n- Dördüncü bulgu (isteğe bağlı)\n- Beşinci bulgu (isteğe bağlı)",
   "dataPoints": [
     {"label": "Toplam Sipariş", "value": "sayı", "change": "+X% veya -X%"},
     {"label": "Toplam Gelir", "value": "₺X", "change": "+X% veya -X%"},
@@ -134,13 +141,20 @@ ${contextData}
     {"label": "Ödeme Başarı Oranı", "value": "%X", "change": "+X% veya -X%"}
   ],
   "recommendedActions": [
-    "Aksiyon 1 (kısa ve net)",
-    "Aksiyon 2 (kısa ve net)",
-    "Aksiyon 3 (kısa ve net)",
-    "Aksiyon 4 (kısa ve net)",
-    "Aksiyon 5 (kısa ve net)"
+    "SPESIFIK aksiyon (müşteri/ürün adı + tutar/miktar içermeli, örn: 'TechStart firmasından ₺28,500'lik ödemeyi 3 gün içinde takip edin')",
+    "SPESIFIK aksiyon (örn: 'Wireless Mouse için acil 50 adet sipariş verin, stok 5/30 seviyesinde')",
+    "SPESIFIK aksiyon (örn: 'Acme Corp ile yüksek hacim nedeniyle (₺125,000) aylık toplantı planlayın')",
+    "SPESIFIK aksiyon (örn: 'ORD-0123 numaralı siparişin sevkiyatını hızlandırın, 7 gündür bekliyor')",
+    "SPESIFIK aksiyon (örn: 'INV-0456 faturası için %10 erken ödeme indirimi önerin, ₺35,000')"
   ]
 }
+
+ÖRNEKLER:
+✅ İYİ: "- Acme Corp firmasından ₺45,000'lik ödeme 15 gün gecikmiş, DSO'yu artırıyor"
+❌ KÖTÜ: "- Bekleyen ödemelerin yüksekliği dikkat çekiyor"
+
+✅ İYİ: "Wireless Mouse stoğu kritik: 5/30, 50 adet acil sipariş verin"
+❌ KÖTÜ: "Stok seviyelerini iyileştirin"
 
 SADECE JSON DÖNDÜR, BAŞKA BİR ŞEY YAZMA!`
               }]
@@ -304,7 +318,9 @@ SADECE JSON DÖNDÜR, BAŞKA BİR ŞEY YAZMA!`
                     {/* Summary - always visible */}
                     <div>
                       <h4 className="text-sm font-semibold text-emerald-400 mb-2">📊 Özet</h4>
-                      <p className="text-gray-300 leading-relaxed">{narrative.summary}</p>
+                      <div className="text-gray-300 leading-relaxed whitespace-pre-line">
+                        {narrative.summary}
+                      </div>
                     </div>
                   </div>
 
