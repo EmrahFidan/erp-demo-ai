@@ -31,8 +31,16 @@ export default function Narrative() {
       setIsLoading(true);
       const { narrativesService } = await import('../services/firestoreService');
       const data = await narrativesService.getAll();
-      console.log('📊 Loaded narratives from Firestore:', data);
-      setNarratives(data);
+
+      // Sort by createdAt descending (newest first)
+      const sortedData = data.sort((a, b) => {
+        const dateA = a.createdAt instanceof Date ? a.createdAt : new Date(a.createdAt);
+        const dateB = b.createdAt instanceof Date ? b.createdAt : new Date(b.createdAt);
+        return dateB.getTime() - dateA.getTime();
+      });
+
+      console.log('📊 Loaded narratives from Firestore (newest first):', sortedData);
+      setNarratives(sortedData);
     } catch (error) {
       console.error('❌ Error loading narratives:', error);
     } finally {
