@@ -320,12 +320,25 @@ GÖREV:
     );
   }
 
+  const handleClearChat = () => {
+    setMessages([]);
+    loadInitialMessages();
+  };
+
   return (
     <div className="px-4 py-6 sm:px-0">
       <div className="rounded-lg p-8">
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-green-500 bg-clip-text text-transparent mb-6">
-          🤖 AI Asistan
-        </h2>
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-green-500 bg-clip-text text-transparent">
+            🤖 AI Asistan
+          </h2>
+          <button
+            onClick={handleClearChat}
+            className="bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white font-medium px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105"
+          >
+            🗑️ Yeni Sohbet
+          </button>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Chat Section */}
