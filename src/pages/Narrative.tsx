@@ -316,9 +316,30 @@ SADECE JSON DÖNDÜR, BAŞKA BİR ŞEY YAZMA!`
                           Oluşturulma: {new Date(narrative.createdAt).toLocaleString('tr-TR')}
                         </p>
                       </div>
-                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                        AI Generated
-                      </span>
+                      <div className="flex gap-2">
+                        <span className="px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                          AI Generated
+                        </span>
+                        <button
+                          onClick={async (e) => {
+                            e.stopPropagation();
+                            if (window.confirm('Bu raporu silmek istediğinize emin misiniz?')) {
+                              try {
+                                const { narrativesService } = await import('../services/firestoreService');
+                                await narrativesService.delete(narrative.id);
+                                toast.success('Rapor silindi');
+                                loadNarratives();
+                              } catch (error) {
+                                toast.error('Silme işlemi başarısız');
+                                console.error('Delete error:', error);
+                              }
+                            }
+                          }}
+                          className="px-3 py-1 rounded-full text-xs font-medium bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30 transition-colors"
+                        >
+                          🗑️ Sil
+                        </button>
+                      </div>
                     </div>
 
                     {/* Summary - always visible */}
