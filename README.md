@@ -1,5 +1,7 @@
 # 💼 ERP Demo - Enterprise Resource Planning System
 
+> **🔒 Security Note:** Firebase API keys in this project are intentionally public. This is by design - Firebase security is enforced through Security Rules, not by hiding API keys. [Learn more](https://firebase.google.com/docs/projects/api-keys)
+
 Modern bir ERP demo uygulaması. React, TypeScript, Firebase ve Gemini AI ile geliştirilmiştir.
 
 ## 🎯 Proje Amacı
