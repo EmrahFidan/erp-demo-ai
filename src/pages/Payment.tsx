@@ -30,9 +30,9 @@ export default function Payment() {
     }).format(amount);
   };
 
-  const formatDate = (date: any) => {
+  const formatDate = (date: { toDate: () => Date } | Date | null | undefined) => {
     if (!date) return '-';
-    const d = date instanceof Date ? date : new Date(date);
+    const d = date instanceof Date ? date : date.toDate();
     return d.toLocaleDateString('tr-TR');
   };
 

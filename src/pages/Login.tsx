@@ -18,8 +18,8 @@ export default function Login() {
     try {
       await login(email, password);
       navigate('/');
-    } catch (error: any) {
-      setError(error.message || 'Giriş başarısız. Lütfen bilgilerinizi kontrol edin.');
+    } catch (error: unknown) {
+      setError(error instanceof Error ? error.message : 'Giriş başarısız. Lütfen bilgilerinizi kontrol edin.');
     } finally {
       setLoading(false);
     }

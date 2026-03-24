@@ -1,4 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+
+const getErrorMessage = (error: unknown): string =>
+  error instanceof Error ? error.message : 'Unknown error';
 import {
   signInWithEmailAndPassword,
   signOut,
@@ -70,9 +73,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (email: string, password: string) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Login error:', error);
-      throw new Error(error.message || 'Login failed');
+      throw new Error(getErrorMessage(error));
     }
   };
 
@@ -80,9 +83,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = async () => {
     try {
       await signOut(auth);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Logout error:', error);
-      throw new Error(error.message || 'Logout failed');
+      throw new Error(getErrorMessage(error));
     }
   };
 
@@ -106,9 +109,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         displayName: email.split('@')[0],
         createdAt: new Date(),
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Signup error:', error);
-      throw new Error(error.message || 'Signup failed');
+      throw new Error(getErrorMessage(error));
     }
   };
 

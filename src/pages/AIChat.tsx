@@ -226,9 +226,9 @@ GÖREV:
       }
 
       return data.candidates[0].content.parts[0].text;
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Gemini API request failed:', error);
-      return `Üzgünüm, bir hata oluştu: ${error.message}\n\nLütfen:\n- İnternet bağlantınızı kontrol edin\n- API key'in doğru olduğundan emin olun\n- Google AI Studio'da API kısıtlamalarını kontrol edin`;
+      return `Üzgünüm, bir hata oluştu: ${error instanceof Error ? error.message : 'Bilinmeyen hata'}\n\nLütfen:\n- İnternet bağlantınızı kontrol edin\n- API key'in doğru olduğundan emin olun\n- Google AI Studio'da API kısıtlamalarını kontrol edin`;
     }
   };
 

@@ -33,9 +33,9 @@ export default function Orders() {
     }).format(amount);
   };
 
-  const formatDate = (date: any) => {
+  const formatDate = (date: { toDate: () => Date } | Date | null | undefined) => {
     if (!date) return '-';
-    const d = date instanceof Date ? date : new Date(date);
+    const d = date instanceof Date ? date : date.toDate();
     return d.toLocaleDateString('tr-TR');
   };
 
@@ -206,7 +206,7 @@ export default function Orders() {
                 <div>
                   <h4 className="text-emerald-400 font-semibold mb-3">Sipariş Kalemleri</h4>
                   <div className="space-y-3">
-                    {selectedOrder.items?.map((item: any, index: number) => (
+                    {selectedOrder.items?.map((item: import('../data/types').OrderItem, index: number) => (
                       <div
                         key={index}
                         className="bg-gray-900/50 border border-emerald-500/20 rounded-lg p-4"

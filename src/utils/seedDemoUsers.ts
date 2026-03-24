@@ -55,8 +55,8 @@ export async function seedDemoUsers() {
       });
 
       console.log(`✅ Created user: ${user.email}`);
-    } catch (error: any) {
-      if (error.code === 'auth/email-already-in-use') {
+    } catch (error: unknown) {
+      if ((error as { code?: string })?.code === 'auth/email-already-in-use') {
         console.log(`⚠️  User already exists: ${user.email}`);
       } else {
         console.error(`❌ Error creating user ${user.email}:`, error);

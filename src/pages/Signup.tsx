@@ -23,9 +23,9 @@ export default function Signup() {
       await signup(email, password, selectedRoles);
       toast.success('Hesap başarıyla oluşturuldu!');
       navigate('/');
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Signup error:', error);
-      toast.error(error.message || 'Hesap oluşturulurken hata oluştu');
+      toast.error(error instanceof Error ? error.message : 'Hesap oluşturulurken hata oluştu');
     } finally {
       setLoading(false);
     }

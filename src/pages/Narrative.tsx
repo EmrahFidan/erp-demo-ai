@@ -223,9 +223,9 @@ SADECE JSON DÖNDÜR, BAŞKA BİR ŞEY YAZMA!`
       await loadNarratives();
 
       toast.success('✅ Gemini AI ile yeni rapor oluşturuldu!');
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error refreshing narrative:', error);
-      toast.error(`Hata: ${error.message || 'Beklenmeyen hata'}`);
+      toast.error(`Hata: ${error instanceof Error ? error.message : 'Beklenmeyen hata'}`);
     } finally {
       setRefreshing(false);
     }
@@ -249,9 +249,9 @@ SADECE JSON DÖNDÜR, BAŞKA BİR ŞEY YAZMA!`
     }
   };
 
-  const formatDate = (date: any) => {
+  const formatDate = (date: { toDate: () => Date } | Date | null | undefined) => {
     if (!date) return '-';
-    const d = date instanceof Date ? date : new Date(date);
+    const d = date instanceof Date ? date : date.toDate();
     return d.toLocaleDateString('tr-TR', { year: 'numeric', month: 'long' });
   };
 

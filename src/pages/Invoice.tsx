@@ -32,9 +32,9 @@ export default function Invoice() {
     }).format(amount);
   };
 
-  const formatDate = (date: any) => {
+  const formatDate = (date: { toDate: () => Date } | Date | null | undefined) => {
     if (!date) return '-';
-    const d = date instanceof Date ? date : new Date(date);
+    const d = date instanceof Date ? date : date.toDate();
     return d.toLocaleDateString('tr-TR');
   };
 
@@ -271,7 +271,7 @@ export default function Invoice() {
                 <div>
                   <h4 className="text-emerald-400 font-semibold mb-3">Fatura Kalemleri</h4>
                   <div className="space-y-2">
-                    {selectedInvoice.lines?.map((line: any, index: number) => (
+                    {selectedInvoice.lines?.map((line: import('../data/types').InvoiceLine, index: number) => (
                       <div
                         key={index}
                         className="bg-gray-900/50 border border-emerald-500/20 rounded-lg p-4"

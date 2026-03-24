@@ -36,8 +36,8 @@ export default function Test() {
               const lowStock = await getLowStockProducts();
               setProducts(lowStock);
 
-            } catch (error: any) {
-              setSeedMessage(`❌ Hata: ${error.message || 'Beklenmeyen hata'}`);
+            } catch (error: unknown) {
+              setSeedMessage(`❌ Hata: ${error instanceof Error ? error.message : 'Beklenmeyen hata'}`);
               console.error('Seed error:', error);
             } finally {
               setIsLoading(false);

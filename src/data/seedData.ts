@@ -323,6 +323,7 @@ export const seedKPI: Omit<KPI, 'id'>[] = [
 export const seedNarratives: Omit<Narrative, 'id'>[] = [
   {
     month: '2024-10',
+    paragraphSummary: 'October 2024 showed strong performance with 15% revenue growth and improved DSO metrics. Customer segment A continues to drive growth while inventory management requires immediate attention on several key products.',
     summaryPoints: [
       'Revenue increased by 15% compared to previous month',
       'Average DSO improved from 42 to 35 days',
