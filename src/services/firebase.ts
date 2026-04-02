@@ -6,13 +6,12 @@ import { getStorage } from 'firebase/storage';
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAaZyGhxXrWkEBS8zvwoQBMyjgw_YJ4Nzo",
-  authDomain: "erp-demo-a5e56.firebaseapp.com",
-  projectId: "erp-demo-a5e56",
-  storageBucket: "erp-demo-a5e56.firebasestorage.app",
-  messagingSenderId: "895628567789",
-  appId: "1:895628567789:web:214d6b30249630e5f598e4",
-  measurementId: "G-F3M9QBWKSX"
+  apiKey: "AIzaSyDHY9ywbv4BdB5xVXuy5ZFT6_jm-H45oPY",
+  authDomain: "erp-demo-ai-portfolio.firebaseapp.com",
+  projectId: "erp-demo-ai-portfolio",
+  storageBucket: "erp-demo-ai-portfolio.firebasestorage.app",
+  messagingSenderId: "247591829854",
+  appId: "1:247591829854:web:f8d64caa8f2c1723224fcf"
 };
 
 // Initialize Firebase
